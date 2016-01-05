@@ -48,7 +48,7 @@ public class QueuedDataManagerTests extends BaseDataManagerTests<QueuedDataManag
                 .build();
 
         JobManager jobManager = new JobManager(getContext(), configuration);
-        return new QueuedDataManager(jobManager, getContext(), rootUrl);
+        return new QueuedDataManager(getContext(), rootUrl, jobManager);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class QueuedDataManagerTests extends BaseDataManagerTests<QueuedDataManag
 
         MockNetworkUtil mockNetworkUtil = new MockNetworkUtil();
 
-        QueuedDataManager testDataManagerWithMockNetworkUtil = new QueuedDataManager(new JobManager(getContext(),
+        QueuedDataManager testDataManagerWithMockNetworkUtil = new QueuedDataManager(getContext(), rootUrl, new JobManager(getContext(),
                 new Configuration.Builder(getContext())
                         .minConsumerCount(1)
                         .maxConsumerCount(3)
@@ -94,7 +94,7 @@ public class QueuedDataManagerTests extends BaseDataManagerTests<QueuedDataManag
                         .consumerKeepAlive(120)
                         .networkUtil(mockNetworkUtil)
                         .build()),
-                new HttpDataManager(getContext(), rootUrl, mockNetworkUtil), getContext(), rootUrl);
+                new HttpDataManager(getContext(), rootUrl, mockNetworkUtil));
 
         assertFalse(testDataManagerWithMockNetworkUtil.keyExists(dataKey));
         testDataManagerWithMockNetworkUtil.writeData(dataKey, testDto, type);
@@ -120,7 +120,7 @@ public class QueuedDataManagerTests extends BaseDataManagerTests<QueuedDataManag
         MockNetworkUtil mockNetworkUtilForQueue = new MockNetworkUtil();
         MockNetworkUtil mockNetworkUtilForHttp = new MockNetworkUtil();
 
-        QueuedDataManager testDataManagerWithMockNetworkUtil = new QueuedDataManager(new JobManager(getContext(),
+        QueuedDataManager testDataManagerWithMockNetworkUtil = new QueuedDataManager(getContext(), rootUrl, new JobManager(getContext(),
                 new Configuration.Builder(getContext())
                         .minConsumerCount(1)
                         .maxConsumerCount(3)
@@ -128,7 +128,7 @@ public class QueuedDataManagerTests extends BaseDataManagerTests<QueuedDataManag
                         .consumerKeepAlive(120)
                         .networkUtil(mockNetworkUtilForQueue)
                         .build()),
-                new HttpDataManager(getContext(), rootUrl, mockNetworkUtilForHttp), getContext(), rootUrl);
+                new HttpDataManager(getContext(), rootUrl, mockNetworkUtilForHttp));
 
         assertFalse(testDataManagerWithMockNetworkUtil.keyExists(dataKey));
         assertFalse(testDataManagerWithMockNetworkUtil.keyExists(key2));
@@ -174,7 +174,7 @@ public class QueuedDataManagerTests extends BaseDataManagerTests<QueuedDataManag
         MockNetworkUtil mockNetworkUtilForQueue = new MockNetworkUtil();
         MockNetworkUtil mockNetworkUtilForHttp = new MockNetworkUtil();
 
-        QueuedDataManager testDataManagerWithMockNetworkUtil = new QueuedDataManager(new JobManager(getContext(),
+        QueuedDataManager testDataManagerWithMockNetworkUtil = new QueuedDataManager(getContext(), rootUrl, new JobManager(getContext(),
                 new Configuration.Builder(getContext())
                         .minConsumerCount(1)
                         .maxConsumerCount(3)
@@ -182,7 +182,7 @@ public class QueuedDataManagerTests extends BaseDataManagerTests<QueuedDataManag
                         .consumerKeepAlive(120)
                         .networkUtil(mockNetworkUtilForQueue)
                         .build()),
-                new HttpDataManager(getContext(), rootUrl, mockNetworkUtilForHttp), getContext(), rootUrl);
+                new HttpDataManager(getContext(), rootUrl, mockNetworkUtilForHttp));
 
         assertFalse(testDataManagerWithMockNetworkUtil.keyExists(dataKey));
         assertFalse(testDataManagerWithMockNetworkUtil.keyExists(key2));
@@ -223,7 +223,7 @@ public class QueuedDataManagerTests extends BaseDataManagerTests<QueuedDataManag
         MockNetworkUtil mockNetworkUtilForQueue = new MockNetworkUtil();
         MockNetworkUtil mockNetworkUtilForHttp = new MockNetworkUtil();
 
-        QueuedDataManager testDataManagerWithMockNetworkUtil = new QueuedDataManager(new JobManager(getContext(),
+        QueuedDataManager testDataManagerWithMockNetworkUtil = new QueuedDataManager(getContext(), rootUrl, new JobManager(getContext(),
                 new Configuration.Builder(getContext())
                         .minConsumerCount(1)
                         .maxConsumerCount(3)
@@ -231,7 +231,7 @@ public class QueuedDataManagerTests extends BaseDataManagerTests<QueuedDataManag
                         .consumerKeepAlive(120)
                         .networkUtil(mockNetworkUtilForQueue)
                         .build()),
-                new HttpDataManager(getContext(), rootUrl, mockNetworkUtilForHttp), getContext(), rootUrl);
+                new HttpDataManager(getContext(), rootUrl, mockNetworkUtilForHttp));
 
         assertFalse(testDataManagerWithMockNetworkUtil.keyExists(dataKey));
 
