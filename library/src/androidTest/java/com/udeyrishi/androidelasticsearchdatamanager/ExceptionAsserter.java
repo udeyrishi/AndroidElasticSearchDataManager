@@ -20,8 +20,6 @@
 
 package com.udeyrishi.androidelasticsearchdatamanager;
 
-import com.udeyrishi.androidelasticsearchdatamanager.exceptions.ExceptionUtils;
-
 import junit.framework.AssertionFailedError;
 
 /**

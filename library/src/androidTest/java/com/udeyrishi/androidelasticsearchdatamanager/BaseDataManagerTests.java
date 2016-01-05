@@ -23,7 +23,6 @@ package com.udeyrishi.androidelasticsearchdatamanager;
 import android.test.AndroidTestCase;
 
 import com.google.gson.reflect.TypeToken;
-import com.udeyrishi.androidelasticsearchdatamanager.exceptions.ExceptionUtils;
 import com.udeyrishi.androidelasticsearchdatamanager.exceptions.ServiceNotAvailableException;
 import com.udeyrishi.androidelasticsearchdatamanager.mocks.TestDto;
 
