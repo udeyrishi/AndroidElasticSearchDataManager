@@ -26,7 +26,7 @@ import java.util.HashMap;
 public class CachedDataManager extends JsonDataManager {
     private static final long MAX_IN_MEMORY_CACHE_DURATION_MS = 3000;
 
-    private static Object cacheLock = new Object();
+    private static final Object cacheLock = new Object();
     private static HashMap<DataKey, TimeObjectWrapper> inMemoryCache = new HashMap<>();
     protected final JsonDataManager innerManager;
     private final LocalDataManager cachingDataManager;
@@ -82,6 +82,7 @@ public class CachedDataManager extends JsonDataManager {
 
         synchronized (cacheLock) {
             if (shouldGetFromInMemoryCache(key)) {
+                //noinspection unchecked
                 return (T) inMemoryCache.get(key).getObject();
             }
         }
@@ -94,6 +95,7 @@ public class CachedDataManager extends JsonDataManager {
 
         synchronized (cacheLock) {
             if (inMemoryCache.containsKey(key)) {
+                //noinspection unchecked
                 return (T) inMemoryCache.get(key).getObject();
             } else {
                 return cachingDataManager.getData(key, typeOfT);
@@ -125,7 +127,6 @@ public class CachedDataManager extends JsonDataManager {
      * Only deletes if the key is found.
      *
      * @param key The {@link DataKey} for which the object has to be deleted.
-     * @return True, if the key is found and deleted. False, if the key is not found.
      * @throws IOException Thrown, if the communication to the storage media fails.
      */
     @Override
