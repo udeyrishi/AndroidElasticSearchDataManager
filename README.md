@@ -1,5 +1,7 @@
 # AndroidElasticSearchDataManager
 
+![](https://raw.githubusercontent.com/udeyrishi/AndroidElasticSearchDataManager/master/logo.png)
+
 AndroidElasticSearchDataManager is a simple to use library for Android for doing [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations on [Elastic Search](https://www.elastic.co). Additionally, it supports features like offline persistent queuing and caching as well.
 
 The ideal way to interface with Elastic Search through this library is via the QueuedDataManager that offers all the above mentioned functionalities. The QueuedDataManager internally composes of other DataManager implementations. These other implementations, like LocalDataManager and HttpDataManager, can be used for perfoming local file IO or HTTP IO with an ElasticSearch-like API, respectively, as well.
