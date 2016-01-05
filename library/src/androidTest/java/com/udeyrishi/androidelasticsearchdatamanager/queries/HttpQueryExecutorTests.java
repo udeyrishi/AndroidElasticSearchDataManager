@@ -1,10 +1,6 @@
 package com.udeyrishi.androidelasticsearchdatamanager.queries;
 
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.ElasticSearchHelper;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries.AggregationQueryResult;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries.FieldGroupedQuery;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries.HttpQueryExecutor;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries.Query;
+import com.udeyrishi.androidelasticsearchdatamanager.elasticsearchhelpers.ElasticSearchHelper;
 
 import junit.framework.TestCase;
 
@@ -24,7 +20,12 @@ public class HttpQueryExecutorTests extends TestCase {
         HttpQueryExecutor queryExecutor = new HttpQueryExecutor(new ElasticSearchHelper(rootUrl));
 
         Query query = new FieldGroupedQuery("state",
-                new ArrayList<String>() { { add("TradeStateOffered"); add("TradeStateAccepted"); } },
+                new ArrayList<String>() {
+                    {
+                        add("TradeStateOffered");
+                        add("TradeStateAccepted");
+                    }
+                },
                 "owner.username", 5, "top_traders_query");
         AggregationQueryResult result = queryExecutor.executeQuery("Trade/_search", query);
 

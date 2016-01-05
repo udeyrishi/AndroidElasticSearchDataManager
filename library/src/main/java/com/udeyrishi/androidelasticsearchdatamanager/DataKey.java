@@ -1,5 +1,7 @@
 package com.udeyrishi.androidelasticsearchdatamanager;
 
+import com.udeyrishi.androidelasticsearchdatamanager.datamanagers.DataManager;
+
 /**
  * A class that acts as the key mapping to an object being stored by a {@link DataManager}.
  * Behaviourally, this key should correspond to the path where an object is stored. The
@@ -81,7 +83,7 @@ public class DataKey {
             return false;
         }
 
-        DataKey rhs = (DataKey)o;
+        DataKey rhs = (DataKey) o;
         return rhs.type.equals(this.type) && rhs.id.equals(this.id);
     }
 

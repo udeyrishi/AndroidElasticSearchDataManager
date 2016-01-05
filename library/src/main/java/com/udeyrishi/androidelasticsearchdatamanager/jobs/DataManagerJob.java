@@ -24,8 +24,8 @@ import com.path.android.jobqueue.Job;
 import com.path.android.jobqueue.Params;
 import com.path.android.jobqueue.RetryConstraint;
 import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
-import com.udeyrishi.androidelasticsearchdatamanager.DataManager;
 import com.udeyrishi.androidelasticsearchdatamanager.Preconditions;
+import com.udeyrishi.androidelasticsearchdatamanager.datamanagers.DataManager;
 
 /**
  * A {@link Job} for queuing {@link DataManager} requests.
@@ -34,10 +34,9 @@ import com.udeyrishi.androidelasticsearchdatamanager.Preconditions;
 public abstract class DataManagerJob extends Job {
     private static final int PRIORITY = 1000;
     private static final String GROUP = "datamanagerjob";
-
+    protected final String rootUrl;
     private final String type;
     private final String id;
-    protected final String rootUrl;
 
     /**
      * Creates an instance of {@link DataManagerJob}.
@@ -59,7 +58,8 @@ public abstract class DataManagerJob extends Job {
      * specific implementations.
      */
     @Override
-    public void onAdded() { }
+    public void onAdded() {
+    }
 
     /**
      * Called if the {@link DataManagerJob} fails after all the {@link RetryConstraint} constraints.
@@ -73,6 +73,7 @@ public abstract class DataManagerJob extends Job {
     /**
      * Gets the request suffix for this job. This approach is needed vs. storing a {@link DataKey},
      * because only simple types can be serialized
+     *
      * @return The request suffix
      */
     protected String getRequestSuffix() {
@@ -81,6 +82,7 @@ public abstract class DataManagerJob extends Job {
 
     /**
      * Called if the job throws an exception. It cancels the job.
+     *
      * @return {@link RetryConstraint#CANCEL}
      */
     @Override

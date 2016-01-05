@@ -1,10 +1,10 @@
-package com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries;
+package com.udeyrishi.androidelasticsearchdatamanager.queries;
 
 import android.content.Context;
 
 import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
-import com.udeyrishi.androidelasticsearchdatamanager.LocalDataManager;
 import com.udeyrishi.androidelasticsearchdatamanager.Preconditions;
+import com.udeyrishi.androidelasticsearchdatamanager.datamanagers.LocalDataManager;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class CachedQueryExecutor implements QueryExecutor {
     /**
      * Creates an instance of {@link CachedQueryExecutor}.
      *
-     * @param context The {@link Context} to be used for local file IO.
+     * @param context       The {@link Context} to be used for local file IO.
      * @param innerExecutor The inner {@link QueryExecutor} to be used for executing the first chance
      *                      queries.
      */
@@ -34,8 +34,9 @@ public class CachedQueryExecutor implements QueryExecutor {
     /**
      * Performs the query and gets the {@link AggregationQueryResult} obtained back. For subsequent
      * requests, if an {@link IOException} is thrown, the cache is used to obtain the results.
+     *
      * @param suffix The suffix at which the query should be executed.
-     * @param query The {@link Query} to be executed.
+     * @param query  The {@link Query} to be executed.
      * @return The obtained {@link AggregationQueryResult}.
      * @throws IOException Thrown, if there is some network failure.
      */
@@ -46,12 +47,10 @@ public class CachedQueryExecutor implements QueryExecutor {
         try {
             aggregationQueryResult = innerExecutor.executeQuery(suffix, query);
             writeToCache(suffix, query, aggregationQueryResult);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             if (isQueryResultInCache(suffix, query)) {
                 aggregationQueryResult = getResultFromCache(suffix, query);
-            }
-            else {
+            } else {
                 throw e;
             }
         }

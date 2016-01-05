@@ -18,16 +18,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.udeyrishi.androidelasticsearchdatamanager;
+package com.udeyrishi.androidelasticsearchdatamanager.datamanagers;
+
+import com.udeyrishi.androidelasticsearchdatamanager.mocks.MockNetworkUtil;
 
 /**
  * Created by rishi on 15-10-30.
  */
-public class LocalDataManagerTests extends BaseDataManagerTests<LocalDataManager> implements DataManagerApiTests {
+public class HttpDataManagerTests extends BaseDataManagerTests<HttpDataManager> implements DataManagerApiTests {
+
+    private final String rootUrl = "http://cmput301.softwareprocess.es:8080/cmput301f15t03/";
 
     @Override
-    protected LocalDataManager createNewDataManager() {
-        return new LocalDataManager(getContext());
+    protected HttpDataManager createNewDataManager() {
+        return new HttpDataManager(getContext(), rootUrl);
     }
 
     @Override
@@ -53,5 +57,14 @@ public class LocalDataManagerTests extends BaseDataManagerTests<LocalDataManager
     @Override
     public void testIsOperational() {
         super.isOperationalTest();
+    }
+
+    public void testIsOperationalWhenNetworkOff() {
+        MockNetworkUtil mockNetworkUtil = new MockNetworkUtil();
+        HttpDataManager testDataManager = new HttpDataManager(getContext(), rootUrl, mockNetworkUtil);
+        assertTrue(testDataManager.isOperational());
+
+        mockNetworkUtil.setNetworkState(false);
+        assertFalse(testDataManager.isOperational());
     }
 }

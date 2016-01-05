@@ -18,10 +18,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.udeyrishi.androidelasticsearchdatamanager;
+package com.udeyrishi.androidelasticsearchdatamanager.datamanagers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
+import com.udeyrishi.androidelasticsearchdatamanager.JsonFormatter;
 import com.udeyrishi.androidelasticsearchdatamanager.mocks.TestDto;
 
 import junit.framework.TestCase;

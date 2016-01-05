@@ -1,7 +1,10 @@
-package com.udeyrishi.androidelasticsearchdatamanager;
+package com.udeyrishi.androidelasticsearchdatamanager.datamanagers;
 
 import android.content.Context;
 
+import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
+import com.udeyrishi.androidelasticsearchdatamanager.Preconditions;
+import com.udeyrishi.androidelasticsearchdatamanager.exceptions.DataKeyNotFoundException;
 import com.udeyrishi.androidelasticsearchdatamanager.exceptions.ServiceNotAvailableException;
 
 import java.io.IOException;
@@ -12,8 +15,8 @@ import java.util.HashMap;
  * A {@link JsonDataManager} that wraps around an inner {@link JsonDataManager} to keep a copy of
  * the data in a local cache using an {@link LocalDataManager}. Allows to perform some operations
  * when the inner manager's {@link JsonDataManager#isOperational()} returns false.
- * <p>
- * <p>
+ * <p/>
+ * <p/>
  * Allows to perform the
  * {@link DataManager#keyExists(DataKey)} and {@link DataManager#getData(DataKey, Type)} operations
  * when the innerManager's {@link JsonDataManager#isOperational()} returns false. In that case,
@@ -21,18 +24,17 @@ import java.util.HashMap;
  * Created by rishi on 15-10-31.
  */
 public class CachedDataManager extends JsonDataManager {
-    private static long MAX_IN_MEMORY_CACHE_DURATION_MS = 3000;
+    private static final long MAX_IN_MEMORY_CACHE_DURATION_MS = 3000;
 
     private static Object cacheLock = new Object();
     private static HashMap<DataKey, TimeObjectWrapper> inMemoryCache = new HashMap<>();
-
-    private final LocalDataManager cachingDataManager;
     protected final JsonDataManager innerManager;
+    private final LocalDataManager cachingDataManager;
 
     /**
      * Creates an instance of the {@link CachedDataManager}.
      *
-     * @param context The {@link Context} to be used for local file IO.
+     * @param context      The {@link Context} to be used for local file IO.
      * @param innerManager The inner {@link JsonDataManager} to be used.
      */
     public CachedDataManager(Context context, JsonDataManager innerManager) {
@@ -158,11 +160,12 @@ public class CachedDataManager extends JsonDataManager {
 
     /**
      * Writes the object to the cache.
-     * @param key The {@link DataKey} for the object that was passed. This will be converted to an
-     *            appropriate caching key.
-     * @param obj The object to be cached.
+     *
+     * @param key     The {@link DataKey} for the object that was passed. This will be converted to an
+     *                appropriate caching key.
+     * @param obj     The object to be cached.
      * @param typeOfT The {@link Type} of the object.
-     * @param <T> The type of the object.
+     * @param <T>     The type of the object.
      */
     protected <T> void writeToCache(DataKey key, T obj, Type typeOfT) {
         cachingDataManager.writeData(key, obj, typeOfT);
@@ -173,6 +176,7 @@ public class CachedDataManager extends JsonDataManager {
 
     /**
      * Deletes the object from the cache, if it exists.
+     *
      * @param key The {@link DataKey} for the object that was passed. This will be converted to an
      *            appropriate caching key.
      */

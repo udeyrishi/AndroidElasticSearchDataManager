@@ -1,4 +1,4 @@
-package com.udeyrishi.androidelasticsearchdatamanager.elasticsearch;
+package com.udeyrishi.androidelasticsearchdatamanager.elasticsearchhelpers;
 
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
@@ -6,14 +6,13 @@ import android.util.Log;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-
 import com.udeyrishi.androidelasticsearchdatamanager.Preconditions;
 import com.udeyrishi.simplehttpclient.HttpClient;
 import com.udeyrishi.simplehttpclient.HttpResponse;
 import com.udeyrishi.simplehttpclient.HttpStatusCode;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 /**
  * A set for helped APIs for interacting with Elastic Search server.
@@ -42,6 +41,7 @@ public class ElasticSearchHelper {
      * Makes an HTTP GET request at the URL formed with the provided suffix, and returns the
      * received JSON String if an HTTP OK is received. If HTTP NOT-FOUND is received,
      * {@link android.content.res.Resources.NotFoundException} is thrown.
+     *
      * @param suffix The suffix to be used for making the request.
      * @return The retrieved JSON string if the HTTP OK is received.
      * @throws IOException Thrown if the network communication fails.
@@ -63,7 +63,8 @@ public class ElasticSearchHelper {
     /**
      * Makes an HTTP PUT request at the URL formed with the provided suffix, and checks for the
      * response code to be a successful one.
-     * @param json The JSON string to be sent.
+     *
+     * @param json   The JSON string to be sent.
      * @param suffix The suffix to be used for making the request.
      * @return The response to the request.
      * @throws IOException Thrown if the network communication fails.
@@ -77,7 +78,8 @@ public class ElasticSearchHelper {
     /**
      * Makes an HTTP POST request at the URL formed with the provided suffix, and checks for the
      * response code to be a successful one.
-     * @param json The JSON string to be sent.
+     *
+     * @param json   The JSON string to be sent.
      * @param suffix The suffix to be used for making the request.
      * @return The response to the request.
      * @throws IOException Thrown if the network communication fails.
@@ -91,6 +93,7 @@ public class ElasticSearchHelper {
     /**
      * Makes an HTTP GET request at the path formed with provided suffix, and checks for the response
      * to see if the path exists.
+     *
      * @param suffix The suffix to be used for making the request.
      * @return If the HTTP response is OK, returns true. If the response is NOT-FOUND, returns false.
      * @throws IOException Thrown if the network communication fails.
@@ -111,9 +114,10 @@ public class ElasticSearchHelper {
 
     /**
      * Sends an HTTP DELETE request at the path formed with the provided suffix.
+     *
      * @param suffix The suffix to be used for making the request.
      * @return True, if the response is OK (i.e., path existed). False, if the response is NOT-FOUND
-     *         (i.e., path didn't exist).
+     * (i.e., path didn't exist).
      * @throws IOException Thrown if the network communication fails.
      */
     public boolean sendDeleteRequestAtPath(String suffix) throws IOException {

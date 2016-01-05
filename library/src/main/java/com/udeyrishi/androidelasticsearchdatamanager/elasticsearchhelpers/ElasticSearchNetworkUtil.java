@@ -1,4 +1,4 @@
-package com.udeyrishi.androidelasticsearchdatamanager.elasticsearch;
+package com.udeyrishi.androidelasticsearchdatamanager.elasticsearchhelpers;
 
 import android.content.Context;
 
@@ -27,6 +27,7 @@ public class ElasticSearchNetworkUtil implements NetworkUtil, NetworkEventProvid
 
     /**
      * Sets a listener for the network changed events.
+     *
      * @param listener A {@link com.path.android.jobqueue.network.NetworkEventProvider.Listener}.
      */
     @Override
@@ -36,6 +37,7 @@ public class ElasticSearchNetworkUtil implements NetworkUtil, NetworkEventProvid
 
     /**
      * Tells whether there is internet access available or not.
+     *
      * @param context The context to be used for checking the network connection.
      * @return True, if internet connection is available, else false.
      */

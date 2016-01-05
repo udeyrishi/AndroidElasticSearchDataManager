@@ -2,13 +2,7 @@ package com.udeyrishi.androidelasticsearchdatamanager.queries;
 
 import android.test.AndroidTestCase;
 
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.ElasticSearchHelper;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries.AggregationQueryResult;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries.CachedQueryExecutor;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries.FieldGroupedQuery;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries.HttpQueryExecutor;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries.Query;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries.QueryExecutor;
+import com.udeyrishi.androidelasticsearchdatamanager.elasticsearchhelpers.ElasticSearchHelper;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,12 +14,17 @@ import java.util.List;
  */
 public class CachedQueryExecutorTests extends AndroidTestCase {
 
-    private Query query;
     private final String rootUrl = "http://cmput301.softwareprocess.es:8080/cmput301f15t03/";
+    private Query query;
 
     public void setUp() {
         query = new FieldGroupedQuery("state",
-                new ArrayList<String>() { { add("TradeStateOffered"); add("TradeStateAccepted"); } },
+                new ArrayList<String>() {
+                    {
+                        add("TradeStateOffered");
+                        add("TradeStateAccepted");
+                    }
+                },
                 "owner.username", 5, "top_traders_query");
     }
 

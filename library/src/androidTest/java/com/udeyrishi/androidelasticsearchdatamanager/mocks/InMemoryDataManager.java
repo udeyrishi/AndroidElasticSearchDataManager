@@ -1,7 +1,7 @@
 package com.udeyrishi.androidelasticsearchdatamanager.mocks;
 
 import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
-import com.udeyrishi.androidelasticsearchdatamanager.JsonDataManager;
+import com.udeyrishi.androidelasticsearchdatamanager.datamanagers.JsonDataManager;
 
 import java.io.IOException;
 import java.lang.reflect.Type;

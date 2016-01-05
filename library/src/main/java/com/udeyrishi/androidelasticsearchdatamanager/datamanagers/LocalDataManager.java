@@ -1,6 +1,10 @@
-package com.udeyrishi.androidelasticsearchdatamanager;
+package com.udeyrishi.androidelasticsearchdatamanager.datamanagers;
 
 import android.content.Context;
+
+import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
+import com.udeyrishi.androidelasticsearchdatamanager.Preconditions;
+import com.udeyrishi.androidelasticsearchdatamanager.exceptions.DataKeyNotFoundException;
 
 import org.apache.commons.io.FileUtils;
 
@@ -22,7 +26,7 @@ public class LocalDataManager extends JsonDataManager {
     /**
      * Creates an instance of the {@link LocalDataManager}.
      *
-     * @param context The {@link Context} to be used for file IO operations.
+     * @param context                     The {@link Context} to be used for file IO operations.
      * @param useExplicitExposeAnnotation True, if the @expose annotations are to be explicitly used,
      *                                    else false. If this is set to true, only the fields with
      *                                    the annotation @expose will be serialized/de-serialized.

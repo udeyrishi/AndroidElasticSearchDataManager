@@ -1,5 +1,6 @@
-package com.udeyrishi.androidelasticsearchdatamanager;
+package com.udeyrishi.androidelasticsearchdatamanager.datamanagers;
 
+import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
 import com.udeyrishi.androidelasticsearchdatamanager.exceptions.ServiceNotAvailableException;
 
 import java.io.IOException;
@@ -63,6 +64,7 @@ public interface DataManager {
 
     /**
      * Tells if this DataManager requires network or not.
+     *
      * @return True, if network is needed, else false.
      */
     boolean requiresNetwork();

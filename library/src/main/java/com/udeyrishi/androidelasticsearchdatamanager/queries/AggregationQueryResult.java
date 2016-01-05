@@ -1,4 +1,4 @@
-package com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries;
+package com.udeyrishi.androidelasticsearchdatamanager.queries;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -93,7 +93,7 @@ public class AggregationQueryResult {
                 return false;
             }
 
-            Bucket rhs = (Bucket)o;
+            Bucket rhs = (Bucket) o;
 
             return this.count == rhs.count &&
                     this.key.equals(rhs.key);

@@ -22,7 +22,7 @@ package com.udeyrishi.androidelasticsearchdatamanager.jobs;
 
 
 import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.ElasticSearchHelper;
+import com.udeyrishi.androidelasticsearchdatamanager.elasticsearchhelpers.ElasticSearchHelper;
 
 import java.io.IOException;
 
@@ -45,6 +45,7 @@ public class DeleteDataJob extends DataManagerJob {
     /**
      * Calls the {@link ElasticSearchHelper#sendDeleteRequestAtPath(String)} operation using the
      * {@link DataKey} passed during construction.
+     *
      * @throws IOException Thrown if the network request fails.
      */
     @Override
