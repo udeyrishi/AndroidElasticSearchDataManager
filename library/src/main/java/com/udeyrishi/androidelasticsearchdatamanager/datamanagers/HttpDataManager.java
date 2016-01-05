@@ -1,11 +1,14 @@
-package com.udeyrishi.androidelasticsearchdatamanager;
+package com.udeyrishi.androidelasticsearchdatamanager.datamanagers;
 
 import android.content.Context;
 import android.content.res.Resources;
 
 import com.path.android.jobqueue.network.NetworkUtil;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.ElasticSearchHelper;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.ElasticSearchNetworkUtil;
+import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
+import com.udeyrishi.androidelasticsearchdatamanager.Preconditions;
+import com.udeyrishi.androidelasticsearchdatamanager.elasticsearchhelpers.ElasticSearchHelper;
+import com.udeyrishi.androidelasticsearchdatamanager.elasticsearchhelpers.ElasticSearchNetworkUtil;
+import com.udeyrishi.androidelasticsearchdatamanager.exceptions.DataKeyNotFoundException;
 import com.udeyrishi.androidelasticsearchdatamanager.exceptions.ServiceNotAvailableException;
 
 import java.io.IOException;
@@ -23,9 +26,9 @@ public class HttpDataManager extends JsonDataManager {
     /**
      * Creates an instance of {@link HttpDataManager}.
      *
-     * @param context The {@link Context} to be used for network operations.
-     * @param rootUrl The root URL to elastic search.
-     * @param networkUtil The {@link NetworkUtil} to be used for checking the network state.
+     * @param context                     The {@link Context} to be used for network operations.
+     * @param rootUrl                     The root URL to elastic search.
+     * @param networkUtil                 The {@link NetworkUtil} to be used for checking the network state.
      * @param useExplicitExposeAnnotation True, if the @expose annotations are to be explicitly used,
      *                                    else false. If this is set to true, only the fields with
      *                                    the annotation @expose will be serialized/de-serialized.
@@ -41,8 +44,8 @@ public class HttpDataManager extends JsonDataManager {
      * Creates an instance of the {@link HttpDataManager}. The manager will set the value of
      * "useExplicitExposeAnnotation" to false.
      *
-     * @param context The {@link Context} to be used for network operations.
-     * @param rootUrl The root URL to elastic search.
+     * @param context     The {@link Context} to be used for network operations.
+     * @param rootUrl     The root URL to elastic search.
      * @param networkUtil The {@link NetworkUtil} to be used for checking the network state.
      */
     public HttpDataManager(Context context, String rootUrl, NetworkUtil networkUtil) {
@@ -65,8 +68,8 @@ public class HttpDataManager extends JsonDataManager {
      * Creates an instance of {@link HttpDataManager}. The manager will use {@link ElasticSearchNetworkUtil}
      * as the {@link NetworkUtil}.
      *
-     * @param context The {@link Context} to be used for network operations.
-     * @param rootUrl The root URL to elastic search.
+     * @param context                     The {@link Context} to be used for network operations.
+     * @param rootUrl                     The root URL to elastic search.
      * @param useExplicitExposeAnnotation True, if the @expose annotations are to be explicitly used,
      *                                    else false. If this is set to true, only the fields with
      *                                    the annotation @expose will be serialized/de-serialized.
@@ -98,8 +101,7 @@ public class HttpDataManager extends JsonDataManager {
 
         try {
             return deserialize(elasticSearchHelper.getJson(key.toString()), typeOfT);
-        }
-        catch (Resources.NotFoundException e) {
+        } catch (Resources.NotFoundException e) {
             throw new DataKeyNotFoundException(key);
         }
     }

@@ -1,7 +1,5 @@
 package com.udeyrishi.androidelasticsearchdatamanager.queries;
 
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries.FieldGroupedQuery;
-
 import junit.framework.TestCase;
 
 import java.util.ArrayList;

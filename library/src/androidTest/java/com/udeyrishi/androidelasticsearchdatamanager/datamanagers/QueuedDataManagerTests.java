@@ -18,11 +18,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.udeyrishi.androidelasticsearchdatamanager;
+package com.udeyrishi.androidelasticsearchdatamanager.datamanagers;
 
 import com.google.gson.reflect.TypeToken;
 import com.path.android.jobqueue.JobManager;
 import com.path.android.jobqueue.config.Configuration;
+import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
 import com.udeyrishi.androidelasticsearchdatamanager.exceptions.ServiceNotAvailableException;
 import com.udeyrishi.androidelasticsearchdatamanager.mocks.MockNetworkUtil;
 import com.udeyrishi.androidelasticsearchdatamanager.mocks.TestDto;
@@ -82,7 +83,8 @@ public class QueuedDataManagerTests extends BaseDataManagerTests<QueuedDataManag
         // QDM doesn't change the getData and keyExists implementations of CachedDataManager
         // Test to check that the write (when device is online) is not messing with these methods
 
-        Type type = new TypeToken<TestDto>() {}.getType();
+        Type type = new TypeToken<TestDto>() {
+        }.getType();
 
         MockNetworkUtil mockNetworkUtil = new MockNetworkUtil();
 
@@ -115,7 +117,8 @@ public class QueuedDataManagerTests extends BaseDataManagerTests<QueuedDataManag
     }
 
     public void testWriteWhenDeviceOfflineQueuesUpRequests() throws IOException, InterruptedException, ServiceNotAvailableException {
-        Type type = new TypeToken<TestDto>() {}.getType();
+        Type type = new TypeToken<TestDto>() {
+        }.getType();
         DataKey key2 = new DataKey(dataKey.getType(), dataKey.getId() + "2");
         MockNetworkUtil mockNetworkUtilForQueue = new MockNetworkUtil();
         MockNetworkUtil mockNetworkUtilForHttp = new MockNetworkUtil();
@@ -169,7 +172,8 @@ public class QueuedDataManagerTests extends BaseDataManagerTests<QueuedDataManag
     }
 
     public void testDeleteWhenDeviceOfflineQueuesUpRequests() throws IOException, InterruptedException, ServiceNotAvailableException {
-        Type type = new TypeToken<TestDto>() {}.getType();
+        Type type = new TypeToken<TestDto>() {
+        }.getType();
         DataKey key2 = new DataKey(dataKey.getType(), dataKey.getId() + "2");
         MockNetworkUtil mockNetworkUtilForQueue = new MockNetworkUtil();
         MockNetworkUtil mockNetworkUtilForHttp = new MockNetworkUtil();
@@ -219,7 +223,8 @@ public class QueuedDataManagerTests extends BaseDataManagerTests<QueuedDataManag
     }
 
     public void testQueueAndRequestDispatchOrdersAreSame() throws IOException, InterruptedException, ServiceNotAvailableException {
-        Type type = new TypeToken<TestDto>() {}.getType();
+        Type type = new TypeToken<TestDto>() {
+        }.getType();
         MockNetworkUtil mockNetworkUtilForQueue = new MockNetworkUtil();
         MockNetworkUtil mockNetworkUtilForHttp = new MockNetworkUtil();
 

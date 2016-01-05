@@ -84,8 +84,7 @@ public class ExceptionAsserter {
 
         if (expectedExceptionType.isInstance(cause)) {
             return true;
-        }
-        else {
+        } else {
             return checkInnerException(cause, expectedExceptionType);
         }
     }

@@ -1,4 +1,4 @@
-package com.udeyrishi.androidelasticsearchdatamanager.elasticsearch;
+package com.udeyrishi.androidelasticsearchdatamanager.elasticsearchhelpers;
 
 /**
  * An {@link RuntimeException} thrown when the {@link ElasticSearchHelper} construction fails.

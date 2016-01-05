@@ -1,6 +1,9 @@
-package com.udeyrishi.androidelasticsearchdatamanager;
+package com.udeyrishi.androidelasticsearchdatamanager.exceptions;
 
 import android.content.res.Resources;
+
+import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
+import com.udeyrishi.androidelasticsearchdatamanager.datamanagers.DataManager;
 
 /**
  * Subclass of {@link android.content.res.Resources.NotFoundException} thrown when a particular

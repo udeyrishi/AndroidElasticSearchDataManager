@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.udeyrishi.androidelasticsearchdatamanager;
+package com.udeyrishi.androidelasticsearchdatamanager.datamanagers;
 
 import com.google.gson.reflect.TypeToken;
 import com.udeyrishi.androidelasticsearchdatamanager.exceptions.ServiceNotAvailableException;

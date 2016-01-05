@@ -18,11 +18,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.udeyrishi.androidelasticsearchdatamanager;
+package com.udeyrishi.androidelasticsearchdatamanager.datamanagers;
 
 import android.test.AndroidTestCase;
 
 import com.google.gson.reflect.TypeToken;
+import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
+import com.udeyrishi.androidelasticsearchdatamanager.ExceptionUtils;
+import com.udeyrishi.androidelasticsearchdatamanager.exceptions.DataKeyNotFoundException;
 import com.udeyrishi.androidelasticsearchdatamanager.exceptions.ServiceNotAvailableException;
 import com.udeyrishi.androidelasticsearchdatamanager.mocks.TestDto;
 

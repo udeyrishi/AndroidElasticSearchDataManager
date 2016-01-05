@@ -18,19 +18,40 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.udeyrishi.androidelasticsearchdatamanager;
+package com.udeyrishi.androidelasticsearchdatamanager.datamanagers;
 
 /**
  * Created by rishi on 15-10-30.
  */
-public interface DataManagerApiTests {
-    void testKeyExists();
+public class LocalDataManagerTests extends BaseDataManagerTests<LocalDataManager> implements DataManagerApiTests {
 
-    void testGetDataWhenKeyDoesNotExistThrowsException();
+    @Override
+    protected LocalDataManager createNewDataManager() {
+        return new LocalDataManager(getContext());
+    }
 
-    void testWriteData();
+    @Override
+    public void testKeyExists() {
+        super.keyExistsTest();
+    }
 
-    void testDelete();
+    @Override
+    public void testGetDataWhenKeyDoesNotExistThrowsException() {
+        super.getDataWhenKeyDoesNotExistThrowsExceptionTest();
+    }
 
-    void testIsOperational();
+    @Override
+    public void testWriteData() {
+        super.writeDataTest();
+    }
+
+    @Override
+    public void testDelete() {
+        super.deleteTest();
+    }
+
+    @Override
+    public void testIsOperational() {
+        super.isOperationalTest();
+    }
 }

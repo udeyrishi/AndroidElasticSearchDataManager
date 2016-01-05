@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries;
+package com.udeyrishi.androidelasticsearchdatamanager.queries;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
@@ -50,15 +50,16 @@ public class FieldGroupedQuery implements Query {
 
     /**
      * Creates a new instance of {@link FieldGroupedQuery}.
-     * @param filterField The field to be used for filtering.
+     *
+     * @param filterField               The field to be used for filtering.
      * @param possibleFilterFieldValues The allowed values for the filterField. The result will be
      *                                  calculated only on the objects whose filterField has one of
      *                                  these values.
-     * @param groupingField This is the field on which grouping happens. The grouping is done after
-     *                      filtering. The result is sorted in decreasing order based on the value
-     *                      of this field
-     * @param maxCount The max number of results after grouping.
-     * @param queryIdentifier The unique identifier for this query.
+     * @param groupingField             This is the field on which grouping happens. The grouping is done after
+     *                                  filtering. The result is sorted in decreasing order based on the value
+     *                                  of this field
+     * @param maxCount                  The max number of results after grouping.
+     * @param queryIdentifier           The unique identifier for this query.
      */
     public FieldGroupedQuery(final String filterField,
                              final Collection<String> possibleFilterFieldValues,
@@ -110,7 +111,7 @@ public class FieldGroupedQuery implements Query {
             return false;
         }
 
-        FieldGroupedQuery rhs = (FieldGroupedQuery)o;
+        FieldGroupedQuery rhs = (FieldGroupedQuery) o;
 
         return this.filteringQuery.equals(rhs.filteringQuery) &&
                 this.aggregationQuery.equals(rhs.aggregationQuery) &&
@@ -164,7 +165,7 @@ public class FieldGroupedQuery implements Query {
                 return false;
             }
 
-            Terms rhs = (Terms)o;
+            Terms rhs = (Terms) o;
 
             return rhs.field.equals(this.field) &&
                     rhs.size.equals(this.size);

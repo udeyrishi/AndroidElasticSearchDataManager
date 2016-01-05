@@ -22,7 +22,7 @@ package com.udeyrishi.androidelasticsearchdatamanager.jobs;
 
 import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
 import com.udeyrishi.androidelasticsearchdatamanager.Preconditions;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.ElasticSearchHelper;
+import com.udeyrishi.androidelasticsearchdatamanager.elasticsearchhelpers.ElasticSearchHelper;
 
 import java.io.IOException;
 
@@ -41,7 +41,7 @@ public class WriteDataJob extends DataManagerJob {
      * @param rootUrl The root URL to elastic search.
      * @param dataKey The {@link DataKey} for the object. The new object will be created at the location
      *                pointed by this key. Existing object will be replaced, if applicable.
-     * @param json The JSON string to be written.
+     * @param json    The JSON string to be written.
      */
     public WriteDataJob(String rootUrl, DataKey dataKey, String json) {
         super(rootUrl, dataKey);
@@ -51,6 +51,7 @@ public class WriteDataJob extends DataManagerJob {
     /**
      * Calls the {@link ElasticSearchHelper#postJson(String, String)} operation using the JSON
      * and {@link DataKey} passed during construction.
+     *
      * @throws IOException Thrown if the network request fails.
      */
     @Override

@@ -1,8 +1,8 @@
-package com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.queries;
+package com.udeyrishi.androidelasticsearchdatamanager.queries;
 
 import com.udeyrishi.androidelasticsearchdatamanager.JsonFormatter;
 import com.udeyrishi.androidelasticsearchdatamanager.Preconditions;
-import com.udeyrishi.androidelasticsearchdatamanager.elasticsearch.ElasticSearchHelper;
+import com.udeyrishi.androidelasticsearchdatamanager.elasticsearchhelpers.ElasticSearchHelper;
 
 import java.io.IOException;
 
@@ -26,7 +26,7 @@ public class HttpQueryExecutor implements QueryExecutor {
         Preconditions.checkNotNull(query, "query");
         Preconditions.checkNotNullOrWhitespace(suffix, "suffix");
 
-        String resultJson =  elasticSearchHelper.postJson(query.formQuery(), suffix);
+        String resultJson = elasticSearchHelper.postJson(query.formQuery(), suffix);
         return new JsonFormatter(false, true).getGson().fromJson(resultJson, AggregationQueryResult.class);
     }
 }
