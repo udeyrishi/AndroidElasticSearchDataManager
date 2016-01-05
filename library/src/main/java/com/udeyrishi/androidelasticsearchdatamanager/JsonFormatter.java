@@ -2,6 +2,10 @@ package com.udeyrishi.androidelasticsearchdatamanager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSerializer;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A class for specifying the JSON format the {@link JsonDataManager} should use.
@@ -10,7 +14,7 @@ import com.google.gson.GsonBuilder;
 public class JsonFormatter {
     private boolean useExplicitExposeAnnotation;
     private boolean usePrettyJson;
-
+    private HashMap<Class<?>, JsonSerializer<?>> serializers = new HashMap<>();
     /**
      * Creates an instance of the {@link JsonFormatter}.
      *
@@ -82,13 +86,21 @@ public class JsonFormatter {
             gsonBuilder.excludeFieldsWithoutExposeAnnotation();
         }
 
-        /**
-         * Register custom serializers
-         */
-        // Trading
-//        gsonBuilder.registerTypeHierarchyAdapter(TradeState.class, new TradeStateSerializer());
-//        gsonBuilder.registerTypeHierarchyAdapter(TradeState.class, new TradeStateDeserializer());
+        // Register custom serializers
+        for (Map.Entry<Class<?>, JsonSerializer<?>> entry : serializers.entrySet()) {
+            gsonBuilder.registerTypeHierarchyAdapter(entry.getKey(), entry.getValue());
+        }
 
         return gsonBuilder.create();
+    }
+
+    /**
+     * Registers a type hierarchy adapter to be used when constructing the {@link Gson} object via
+     * {@link JsonFormatter#getGson()} method.
+     * @param classOfObject The {@link Class} of the object to be serialized.
+     * @param serializer The custom {@link JsonSerializer} to be used for this type.
+     */
+    public void registerSerializer(Class<?> classOfObject, JsonSerializer<?> serializer) {
+        serializers.put(classOfObject, serializer);
     }
 }
