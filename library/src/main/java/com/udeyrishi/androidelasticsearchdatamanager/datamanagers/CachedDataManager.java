@@ -15,6 +15,7 @@ package com.udeyrishi.androidelasticsearchdatamanager.datamanagers;
 
 import android.content.Context;
 
+import com.google.gson.JsonSerializer;
 import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
 import com.udeyrishi.androidelasticsearchdatamanager.Preconditions;
 import com.udeyrishi.androidelasticsearchdatamanager.exceptions.DataKeyNotFoundException;
@@ -170,6 +171,14 @@ public class CachedDataManager extends JsonDataManager {
     @Override
     public boolean requiresNetwork() {
         return innerManager.requiresNetwork();
+    }
+
+
+    @Override
+    public void registerSerializer(Class<?> classOfObject, JsonSerializer<?> serializer) {
+        super.registerSerializer(classOfObject, serializer);
+        innerManager.registerSerializer(classOfObject, serializer);
+        cachingDataManager.registerSerializer(classOfObject, serializer);
     }
 
     /**
