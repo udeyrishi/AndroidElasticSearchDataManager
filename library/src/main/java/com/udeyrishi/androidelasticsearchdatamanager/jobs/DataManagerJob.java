@@ -67,13 +67,13 @@ public abstract class DataManagerJob extends Job {
      */
     @Override
     protected void onCancel() {
-        throw new RuntimeException();
+        throw new RuntimeException("DataManagerJob failed.");
     }
 
     /**
-     * Gets the request suffix for thsi job. This approach is needed vs. storing a {@link DataKey},
+     * Gets the request suffix for this job. This approach is needed vs. storing a {@link DataKey},
      * because only simple types can be serialized
-     * @return
+     * @return The request suffix
      */
     protected String getRequestSuffix() {
         return new DataKey(type, id).toString();

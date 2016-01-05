@@ -22,10 +22,10 @@ public class LocalDataManager extends JsonDataManager {
     /**
      * Creates an instance of the {@link LocalDataManager}.
      *
+     * @param context The {@link Context} to be used for file IO operations.
      * @param useExplicitExposeAnnotation True, if the @expose annotations are to be explicitly used,
      *                                    else false. If this is set to true, only the fields with
      *                                    the annotation @expose will be serialized/de-serialized.
-     * @param context The {@link Context} to be used for file IO operations.
      */
     public LocalDataManager(Context context, boolean useExplicitExposeAnnotation) {
         super(useExplicitExposeAnnotation);

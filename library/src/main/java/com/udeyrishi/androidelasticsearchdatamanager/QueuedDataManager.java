@@ -31,35 +31,34 @@ public class QueuedDataManager extends CachedDataManager {
 
     /**
      * Creates an instance of the {@link QueuedDataManager}.
-     * @param jobManager The {@link JobManager} to be used for queueing jobs.
      * @param context The {@link Context} to be used for network operations.
      * @param rootUrl The root URL to elastic search.
+     * @param jobManager The {@link JobManager} to be used for queueing jobs.
      * @param useExplicitExposeAnnotation True, if the @expose annotations are to be explicitly used,
-     *                                    else false. If this is set to true, only the fields with
-     *                                    the annotation @expose will be serialized/de-serialized.
+*                                    else false. If this is set to true, only the fields with
      */
-    public QueuedDataManager(JobManager jobManager, Context context, String rootUrl, boolean useExplicitExposeAnnotation) {
-        this(jobManager, new HttpDataManager(context, rootUrl, useExplicitExposeAnnotation), context, rootUrl);
+    public QueuedDataManager(Context context, String rootUrl, JobManager jobManager, boolean useExplicitExposeAnnotation) {
+        this(context, rootUrl, jobManager, new HttpDataManager(context, rootUrl, useExplicitExposeAnnotation));
     }
 
     /**
      * Creates an instance of the {@link QueuedDataManager}. Sets the "useExplicitExposeAnnotation"
      * value to false.
-     * @param jobManager The {@link JobManager} to be used for queueing jobs.
      * @param context The {@link Context} to be used for network operations.
      * @param rootUrl The root URL to elastic search.
+     * @param jobManager The {@link JobManager} to be used for queueing jobs.
      */
-    public QueuedDataManager(JobManager jobManager, Context context, String rootUrl) {
-        this(jobManager, context, rootUrl, false);
+    public QueuedDataManager(Context context, String rootUrl, JobManager jobManager) {
+        this(context, rootUrl, jobManager, false);
     }
 
     /**
      * Test only constructor for working with a test version of {@link HttpDataManager}.
+     * @param rootUrl The root URL to elastic search.
      * @param jobManager The {@link JobManager} to be used for queueing jobs.
      * @param innerManager The {@link HttpDataManager} to be used as the inner manager.
-     * @param rootUrl The root URL to elastic search.
      */
-    protected QueuedDataManager(JobManager jobManager, HttpDataManager innerManager, Context context, String rootUrl) {
+    protected QueuedDataManager(Context context, String rootUrl, JobManager jobManager, HttpDataManager innerManager) {
         super(context, Preconditions.checkNotNull(innerManager, "innerManager"));
         this.jobManager = Preconditions.checkNotNull(jobManager, "jobManager");
         this.rootUrl = Preconditions.checkNotNullOrWhitespace(rootUrl, "rootUrl");
