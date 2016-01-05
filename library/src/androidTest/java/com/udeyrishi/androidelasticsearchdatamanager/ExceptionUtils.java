@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.udeyrishi.androidelasticsearchdatamanager.exceptions;
+package com.udeyrishi.androidelasticsearchdatamanager;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
