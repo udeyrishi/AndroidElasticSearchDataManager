@@ -15,6 +15,7 @@ package com.udeyrishi.androidelasticsearchdatamanager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonSerializer;
 import com.udeyrishi.androidelasticsearchdatamanager.datamanagers.JsonDataManager;
 
@@ -29,6 +30,7 @@ public class JsonFormatter {
     private boolean useExplicitExposeAnnotation;
     private boolean usePrettyJson;
     private HashMap<Class<?>, JsonSerializer<?>> serializers = new HashMap<>();
+    private HashMap<Class<?>, JsonDeserializer<?>> deserializers  = new HashMap<>();
 
     /**
      * Creates an instance of the {@link JsonFormatter}.
@@ -106,17 +108,32 @@ public class JsonFormatter {
             gsonBuilder.registerTypeHierarchyAdapter(entry.getKey(), entry.getValue());
         }
 
+        for (Map.Entry<Class<?>, JsonDeserializer<?>> entry : deserializers.entrySet()) {
+            gsonBuilder.registerTypeHierarchyAdapter(entry.getKey(), entry.getValue());
+        }
+
         return gsonBuilder.create();
     }
 
     /**
-     * Registers a type hierarchy adapter to be used when constructing the {@link Gson} object via
-     * {@link JsonFormatter#getGson()} method.
+     * Registers a type hierarchy serialization adapter to be used when constructing the {@link Gson}
+     * object via {@link JsonFormatter#getGson()} method.
      *
      * @param classOfObject The {@link Class} of the object to be serialized.
      * @param serializer    The custom {@link JsonSerializer} to be used for this type.
      */
     public void registerSerializer(Class<?> classOfObject, JsonSerializer<?> serializer) {
         serializers.put(classOfObject, serializer);
+    }
+
+    /**
+     * Registers a type hierarchy deserialization adapter to be used when constructing the {@link Gson}
+     * object via {@link JsonFormatter#getGson()} method.
+     *
+     * @param classOfObject The {@link Class} of the object to be serialized.
+     * @param deserializer    The custom {@link JsonSerializer} to be used for this type.
+     */
+    public void registerDeserializer(Class<?> classOfObject, JsonDeserializer<?> deserializer) {
+        deserializers.put(classOfObject, deserializer);
     }
 }

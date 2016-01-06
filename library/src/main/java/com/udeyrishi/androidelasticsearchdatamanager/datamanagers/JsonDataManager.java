@@ -14,6 +14,7 @@
 package com.udeyrishi.androidelasticsearchdatamanager.datamanagers;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonSerializer;
 import com.udeyrishi.androidelasticsearchdatamanager.JsonFormatter;
 
@@ -55,6 +56,16 @@ public abstract class JsonDataManager implements DataManager {
      */
     public void registerSerializer(Class<?> classOfObject, JsonSerializer<?> serializer) {
         jsonFormatter.registerSerializer(classOfObject, serializer);
+    }
+
+    /**
+     * Registers a custom {@link JsonDeserializer} for an object of custom type.
+     *
+     * @param classOfObject The {@link Class} of the object to be serialized.
+     * @param deserializer    The custom {@link JsonSerializer} to be used for this type.
+     */
+    public void registerDeserializer(Class<?> classOfObject, JsonDeserializer<?> deserializer) {
+        jsonFormatter.registerDeserializer(classOfObject, deserializer);
     }
 
     /**

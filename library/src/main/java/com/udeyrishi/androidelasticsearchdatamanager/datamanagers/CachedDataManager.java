@@ -15,6 +15,7 @@ package com.udeyrishi.androidelasticsearchdatamanager.datamanagers;
 
 import android.content.Context;
 
+import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonSerializer;
 import com.udeyrishi.androidelasticsearchdatamanager.DataKey;
 import com.udeyrishi.androidelasticsearchdatamanager.Preconditions;
@@ -174,11 +175,24 @@ public class CachedDataManager extends JsonDataManager {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void registerSerializer(Class<?> classOfObject, JsonSerializer<?> serializer) {
         super.registerSerializer(classOfObject, serializer);
         innerManager.registerSerializer(classOfObject, serializer);
         cachingDataManager.registerSerializer(classOfObject, serializer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void registerDeserializer(Class<?> classOfObject, JsonDeserializer<?> deserializer) {
+        super.registerDeserializer(classOfObject, deserializer);
+        innerManager.registerDeserializer(classOfObject, deserializer);
+        cachingDataManager.registerDeserializer(classOfObject, deserializer);
     }
 
     /**
