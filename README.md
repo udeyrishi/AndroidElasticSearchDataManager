@@ -8,7 +8,7 @@ The ideal way to interface with Elastic Search through this library is via the Q
 
 ### Building & Testing
 
-This is a Gradle project build in Android Studio. Open the project in the IDE for building andtesting.
+This is a Gradle project build in Android Studio. Open the project in the IDE for building and testing.
 
 ### Usage & Documentation
 
