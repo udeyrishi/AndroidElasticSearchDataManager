@@ -21,3 +21,7 @@ The offline persistent queuing functionality has been implemented through the [a
 ### License
 
 [Apache v2.0](https://github.com/udeyrishi/AndroidElasticSearchDataManager/blob/master/LICENSE)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/udeyrishi/androidelasticsearchdatamanager/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
