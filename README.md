@@ -8,11 +8,11 @@ The ideal way to interface with Elastic Search through this library is via the Q
 
 ### Building & Testing
 
-This is a Gradle project build in Android Studio. Open the project in the IDE for building andtesting.
+This is a Gradle project build in Android Studio. Open the project in the IDE for building and testing.
 
 ### Usage & Documentation
 
-A compiled .aar is kept in the /bin directory for direct importing. The usage documentation is present in the project as Javadocs in the /javadocs directory. A sample trading app using this library as an imported .aar is located [here](https://github.com/CMPUT301F15T03/301p).
+A compiled .aar is kept in the /bin directory for direct importing. A sample trading app using this library as an imported .aar is located [here](https://github.com/CMPUT301F15T03/301p).
 
 ### Credits
 
@@ -21,3 +21,7 @@ The offline persistent queuing functionality has been implemented through the [a
 ### License
 
 [Apache v2.0](https://github.com/udeyrishi/AndroidElasticSearchDataManager/blob/master/LICENSE)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/udeyrishi/androidelasticsearchdatamanager/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
